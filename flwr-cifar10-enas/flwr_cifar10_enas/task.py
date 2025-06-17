@@ -1,4 +1,4 @@
-"""flwr-cifar10-basic: A Flower / TensorFlow app."""
+"""flwr-cifar10-enas: A Flower / TensorFlow app."""
 
 import os
 
@@ -7,11 +7,7 @@ from keras import layers
 from flwr_datasets import FederatedDataset
 from flwr_datasets.partitioner import IidPartitioner
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.applications import VGG19
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense, Flatten, Dropout, Input
-from tensorflow.keras.optimizers import Adam
+
 
 # Make TensorFlow log less verbose
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
@@ -19,17 +15,18 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 def load_model():
     # Define a simple CNN for CIFAR-10 and set Adam optimizer
-    # Model used VGG 19 https://github.com/BIGBALLON/cifar-10-cnn/blob/master/README.md"
-    base_model = VGG19(weights='imagenet', include_top=False, input_shape=(32, 32, 3))
-    base_model.trainable = False  # Freeze the base model
-    inputs = Input(shape=(32, 32, 3))
-    x = base_model(inputs, training=False)
-    x = Flatten()(x)
-    x = Dense(256, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    outputs = Dense(10, activation='softmax')(x)
-
-    model = Model(inputs, outputs)
+    model = keras.Sequential(
+        [
+            keras.Input(shape=(32, 32, 3)),
+            layers.Conv2D(32, kernel_size=(3, 3), activation="relu"),
+            layers.MaxPooling2D(pool_size=(2, 2)),
+            layers.Conv2D(64, kernel_size=(3, 3), activation="relu"),
+            layers.MaxPooling2D(pool_size=(2, 2)),
+            layers.Flatten(),
+            layers.Dropout(0.5),
+            layers.Dense(10, activation="softmax"),
+        ]
+    )
     model.compile("adam", "sparse_categorical_crossentropy", metrics=["accuracy"])
     return model
 

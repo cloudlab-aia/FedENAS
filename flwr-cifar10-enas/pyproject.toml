@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "flwr-cifar10-basic"
+name = "flwr-cifar10-enas"
 version = "1.0.0"
 description = ""
 license = "Apache-2.0"
@@ -20,14 +20,14 @@ packages = ["."]
 publisher = "Tamai"
 
 [tool.flwr.app.components]
-serverapp = "flwr_cifar10_basic.server_app:app"
-clientapp = "flwr_cifar10_basic.client_app:app"
+serverapp = "flwr_cifar10_enas.server_app:app"
+clientapp = "flwr_cifar10_enas.client_app:app"
 
 [tool.flwr.app.config]
 num-server-rounds = 2
-local-epochs = 10
-batch-size = 128
-verbose = true
+local-epochs = 5
+batch-size = 32
+verbose = false
 
 [tool.flwr.federations]
 default = "local-simulation"
