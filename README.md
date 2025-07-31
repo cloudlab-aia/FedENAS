@@ -107,7 +107,7 @@ If you use this work, please cite the original paper:
 @article{ramirez2025fedenas,
   title     = {Breaking the Architecture Barrier in Federated Learning: A Federated Efficient NAS Approach},
   author    = {Tamai Ramírez-Gordillo and Francisco A. Pujol and Higinio Mora},
-  journal   = {Applied Artificial Intelligence},
+  journal   = {Neurocomputing},
   year      = {2025},
   note      = {Preprint submitted July 29, 2025}
 }
