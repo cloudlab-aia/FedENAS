@@ -6,7 +6,7 @@ This repository contains the code and documentation for the paper:
 **👨‍🔬 Authors:** Tamai Ramírez-Gordillo, Francisco A. Pujol, Higinio Mora  
 **🏛 Affiliation:** Department of Computer Technology and Computation, University of Alicante  
 **📅 Submission Date:** July 29, 2025  
-**📚 Journal:** Applied Artificial Intelligence *(preprint)*
+**📚 Journal:** Neurocomputing *(preprint)*
 
 ---
 
